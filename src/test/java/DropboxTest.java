@@ -20,16 +20,16 @@ public class DropboxTest {
     @Order(1)
     public void UploadTest() throws IOException{
         String myJson = "{\"mode\": \"add\"," +
-                        "\"autorename\": true," +
-                        "\"mute\": false," +
-                        "\"path\": \"/message.txt\"," +
-                        "\"strict_conflict\": false}";
+                "\"autorename\": true," +
+                "\"mute\": false," +
+                "\"path\": \"/message.txt\"," +
+                "\"strict_conflict\": false}";
 
         byte[] file = Files.readAllBytes(Paths.get("src/message.txt"));
 
         RequestSpecification request = RestAssured.given();
         request.config(RestAssured.config().encoderConfig(encoderConfig()
-                                            .appendDefaultContentCharsetToContentTypeIfUndefined(false)))
+                .appendDefaultContentCharsetToContentTypeIfUndefined(false)))
                 .header("Authorization", "Bearer " + TOKEN)
                 .header("Dropbox-API-Arg", myJson)
                 .header("Content-Type","application/octet-stream")
@@ -71,3 +71,4 @@ public class DropboxTest {
                 .statusCode(200);
     }
 }
+
